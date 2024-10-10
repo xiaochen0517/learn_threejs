@@ -5,4 +5,5 @@
 // import "./src/5_camera_orbitcontrols";
 // import "./src/6_canvas_fill_and_resize";
 // import "./src/7_geometries_test";
-import "./src/8_debug_ui";
+// import "./src/8_debug_ui";
+import "./src/9_material_test";
