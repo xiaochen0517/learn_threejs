@@ -50,6 +50,7 @@ const textureLoader = new THREE.TextureLoader(loadingManager);
 const metalColorTexture = textureLoader.load(
   "/resources/texture/Metal021_4K_Color.jpg"
 );
+metalColorTexture.colorSpace = THREE.SRGBColorSpace;
 const metalDisplacementTexture = textureLoader.load(
   "/resources/texture/Metal021_4K_Displacement.jpg"
 );
@@ -74,11 +75,6 @@ const geometry = new THREE.BoxGeometry(1, 1, 1);
 const material = new THREE.MeshBasicMaterial({
   wireframe: false,
   map: metalColorTexture,
-  displacementMap: metalDisplacementTexture,
-  displacementScale: 0.1,
-  metalnessMap: metalMetalnessTexture,
-  normalMap: metalNormalDXTexture,
-  roughnessMap: metalRoughnessTexture,
 });
 const cube = new THREE.Mesh(ballGeometry, material);
 scene.add(cube);
