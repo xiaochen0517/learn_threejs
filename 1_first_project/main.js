@@ -8,4 +8,5 @@
 // import "./src/learn_basic/8_debug_ui";
 // import "./src/learn_basic/9_material_loaded";
 // import "./src/learn_basic/10_material";
-import "./src/learn_basic/11_text";
+// import "./src/learn_basic/11_text";
+import "./src/learn_basic/12_light";
