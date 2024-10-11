@@ -26,7 +26,7 @@ document.body.appendChild(renderer.domElement);
 // materialImage.onload = () => {
 //   metalTexture.needsUpdate = true;
 // };
-// materialImage.src = "/resources/texture/Metal021_4K_Color.jpg";
+// materialImage.src = "/resources/texture/metal/Metal021_4K_Color.jpg";
 
 /**
  * Texture with texture loader
@@ -48,36 +48,100 @@ loadingManager.onError = () => {
 
 const textureLoader = new THREE.TextureLoader(loadingManager);
 const metalColorTexture = textureLoader.load(
-  "/resources/texture/Metal021_4K_Color.jpg"
+  "/resources/texture/metal/Metal021_4K_Color.jpg"
 );
 metalColorTexture.colorSpace = THREE.SRGBColorSpace;
 const metalDisplacementTexture = textureLoader.load(
-  "/resources/texture/Metal021_4K_Displacement.jpg"
+  "/resources/texture/metal/Metal021_4K_Displacement.jpg"
 );
 const metalMetalnessTexture = textureLoader.load(
-  "/resources/texture/Metal021_4K_Metalness.jpg"
+  "/resources/texture/metal/Metal021_4K_Metalness.jpg"
 );
 const metalNormalDXTexture = textureLoader.load(
-  "/resources/texture/Metal021_4K_NormalDX.jpg"
+  "/resources/texture/metal/Metal021_4K_NormalDX.jpg"
 );
 const metalNormalGLTexture = textureLoader.load(
-  "/resources/texture/Metal021_4K_NormalGL.jpg"
+  "/resources/texture/metal/Metal021_4K_NormalGL.jpg"
 );
 const metalRoughnessTexture = textureLoader.load(
-  "/resources/texture/Metal021_4K_Roughness.jpg"
+  "/resources/texture/metal/Metal021_4K_Roughness.jpg"
+);
+
+// const cubeTextureLoader = new THREE.CubeTextureLoader(loadingManager);
+const envMapTexture = textureLoader.load(
+  "/resources/texture/ems/environment_map.png",
+  (texture) => {
+    texture.mapping = THREE.EquirectangularReflectionMapping;
+    texture.encoding = THREE.sRGBEncoding;
+  }
 );
 
 /**
  * Geometry
  */
-const ballGeometry = new THREE.SphereGeometry(0.75, 100, 100);
-const geometry = new THREE.BoxGeometry(1, 1, 1);
-const material = new THREE.MeshBasicMaterial({
-  wireframe: false,
+// const material = new THREE.MeshBasicMaterial({
+//   wireframe: false,
+//   map: metalColorTexture,
+// });
+
+// const material = new THREE.MeshNormalMaterial({
+//   normalMap: metalNormalGLTexture,
+// });
+
+// const material = new THREE.MeshMatcapMaterial({
+//   matcap: metalColorTexture,
+// });
+
+// const material = new THREE.MeshDepthMaterial();
+
+// const material = new THREE.MeshLambertMaterial();
+
+// const material = new THREE.MeshPhongMaterial();
+// material.shininess = 100;
+
+// const material = new THREE.MeshToonMaterial();
+
+const material = new THREE.MeshStandardMaterial({
   map: metalColorTexture,
+  displacementMap: metalDisplacementTexture,
+  displacementScale: 0.1,
+  metalnessMap: metalMetalnessTexture,
+  normalMap: metalNormalGLTexture,
+  roughnessMap: metalRoughnessTexture,
+  envMap: envMapTexture,
 });
-const cube = new THREE.Mesh(ballGeometry, material);
-scene.add(cube);
+
+// Sphere geometry
+const sphereGeometry = new THREE.SphereGeometry(0.5, 100, 100);
+const sphereMesh = new THREE.Mesh(sphereGeometry, material);
+sphereMesh.position.x = -1.5;
+
+// Plane geometry
+const planeGeometry = new THREE.PlaneGeometry(1, 1, 100, 100);
+const planeMesh = new THREE.Mesh(planeGeometry, material);
+
+// Torus geometry
+const torusGeometry = new THREE.TorusGeometry(0.3, 0.15, 16, 100);
+const torusMesh = new THREE.Mesh(torusGeometry, material);
+torusMesh.position.x = 1.5;
+
+scene.add(sphereMesh, planeMesh, torusMesh);
+
+/**
+ * Light
+ */
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+scene.add(ambientLight);
+
+const pointLight = new THREE.PointLight(0xffffff, 3, 0, 0.5);
+pointLight.position.x = 2;
+pointLight.position.y = 3;
+pointLight.position.z = 3;
+scene.add(pointLight);
+
+const lightHelper = new THREE.PointLightHelper(pointLight);
+scene.add(lightHelper);
 
 /**
  * add axis helper
@@ -136,7 +200,19 @@ window.addEventListener("dblclick", () => {
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 
+const clock = new THREE.Clock();
+
 const render = function () {
+  const elapsedTime = clock.getElapsedTime();
+
+  sphereMesh.rotation.y = elapsedTime * 0.5;
+  planeMesh.rotation.y = elapsedTime * 0.5;
+  torusMesh.rotation.y = elapsedTime * 0.5;
+
+  sphereMesh.rotation.x = elapsedTime * 0.5;
+  planeMesh.rotation.x = elapsedTime * 0.5;
+  torusMesh.rotation.x = elapsedTime * 0.5;
+
   controls.update();
   renderer.render(scene, camera);
   window.requestAnimationFrame(render);
