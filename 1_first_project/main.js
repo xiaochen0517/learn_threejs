@@ -9,4 +9,7 @@
 // import "./src/learn_basic/9_material_loaded";
 // import "./src/learn_basic/10_material";
 // import "./src/learn_basic/11_text";
-import "./src/learn_basic/12_light";
+// import "./src/learn_basic/12_light";
+// import "./src/learn_basic/13_shadow";
+
+import "./src/practice/1_haunted_house";
