@@ -11,5 +11,7 @@
 // import "./src/learn_basic/11_text";
 // import "./src/learn_basic/12_light";
 // import "./src/learn_basic/13_shadow";
+// import "./src/learn_basic/14_particles";
 
-import "./src/practice/1_haunted_house";
+// import "./src/practice/1_haunted_house";
+import "./src/practice/2_galaxy_generator";
