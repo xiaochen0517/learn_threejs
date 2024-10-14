@@ -9,12 +9,30 @@
     html,
     body {
       margin: 0;
-      overflow: hidden;
+      background-color: #1e1a20;
+      font-family: 'HarmonyOS Sans SC', 'Courier New', Courier, monospace;
+    }
+
+    #scrollAnimation {
+      display: none;
     }
   </style>
 </head>
 
 <body>
+  <div id="scrollAnimation" class="fixed w-full h-screen overflow-auto flex flex-col">
+    <div class="absolute top-0 left-0 right-0">
+      <div class="w-full h-screen flex flex-col justify-center px-12">
+        <h1 class="text-6xl font-bold text-neutral-50">LEARN THREE.JS</h1>
+      </div>
+      <div class="w-full h-screen flex flex-col justify-center px-12">
+        <h1 class="text-6xl font-bold text-neutral-50">SCROLL ANIMATION</h1>
+      </div>
+      <div class="w-full h-screen flex flex-col justify-center px-12">
+        <h1 class="text-6xl font-bold text-neutral-50">CREATE BY MAS0N1EE</h1>
+      </div>
+    </div>
+  </div>
   <script type="module" src="./main.js"></script>
 </body>
 
