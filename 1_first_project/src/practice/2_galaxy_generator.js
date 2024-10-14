@@ -2,7 +2,7 @@ import * as THREE from "three";
 import GUI from "lil-gui";
 import Stats from "three/examples/jsm/libs/stats.module.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { thickness } from "three/webgpu";
+import { color } from "three/webgpu";
 
 const storeData = {
   canvasSize: {
@@ -26,13 +26,15 @@ const storeData = {
     particlesGeometry: null,
     particlesMaterial: null,
     particlesMesh: null,
-    particleCount: 10000,
+    particleCount: 20000,
     particleSize: 0.02,
     radius: 5,
-    branches: 10,
-    thickness: 0.1,
+    branches: 16,
     spin: 0.4,
     randomness: 0.5,
+    randomnessPower: 3,
+    colorInside: 0xff6030,
+    colorOutside: 0x1b3984,
   },
 };
 
@@ -120,8 +122,12 @@ function createGalaxy() {
   );
   const colorArray = new Float32Array(storeData.galaxyData.particleCount * 3);
 
+  const colorInside = new THREE.Color(storeData.galaxyData.colorInside);
+  const colorOutside = new THREE.Color(storeData.galaxyData.colorOutside);
+
   for (let index = 0; index < storeData.galaxyData.particleCount; index++) {
     const i3 = index * 3;
+    // position
     const radius = Math.random() * storeData.galaxyData.radius;
     const branchesAngle =
       ((index % storeData.galaxyData.branches) /
@@ -129,21 +135,31 @@ function createGalaxy() {
       (Math.PI * 2);
     const spinAngle = radius * storeData.galaxyData.spin;
 
-    const randomX = (Math.random() - 0.5) * storeData.galaxyData.randomness;
-    const randomY = (Math.random() - 0.5) * storeData.galaxyData.randomness;
-    const randomZ = (Math.random() - 0.5) * storeData.galaxyData.randomness;
+    const randomX =
+      Math.pow(Math.random(), storeData.galaxyData.randomnessPower) *
+      (Math.random() < 0.5 ? 1 : -1) *
+      storeData.galaxyData.randomness;
+    const randomY =
+      Math.pow(Math.random(), storeData.galaxyData.randomnessPower) *
+      (Math.random() < 0.5 ? 1 : -1) *
+      storeData.galaxyData.randomness;
+    const randomZ =
+      Math.pow(Math.random(), storeData.galaxyData.randomnessPower) *
+      (Math.random() < 0.5 ? 1 : -1) *
+      storeData.galaxyData.randomness;
 
-    // position
     positionArray[i3] = Math.cos(branchesAngle + spinAngle) * radius + randomX;
-    positionArray[i3 + 1] =
-      (Math.random() - 0.5) * storeData.galaxyData.thickness + randomY;
+    positionArray[i3 + 1] = randomY;
     positionArray[i3 + 2] =
       Math.sin(branchesAngle + spinAngle) * radius + randomZ;
 
     // color
-    colorArray[i3] = Math.random();
-    colorArray[i3 + 1] = Math.random();
-    colorArray[i3 + 2] = Math.random();
+    const mixedColor = colorInside.clone();
+    mixedColor.lerp(colorOutside, radius / storeData.galaxyData.radius);
+
+    colorArray[i3] = mixedColor.r;
+    colorArray[i3 + 1] = mixedColor.g;
+    colorArray[i3 + 2] = mixedColor.b;
   }
 
   storeData.galaxyData.particlesGeometry.setAttribute(
@@ -160,6 +176,7 @@ function createGalaxy() {
     sizeAttenuation: true,
     vertexColors: true,
     depthWrite: false,
+    blending: THREE.AdditiveBlending,
   });
 
   storeData.galaxyData.particlesMesh = new THREE.Points(
@@ -215,13 +232,6 @@ function initGalaxyDebug() {
     .name("Galaxy Branches")
     .onFinishChange(createGalaxy);
   galaxyFloder
-    .add(storeData.galaxyData, "thickness")
-    .min(0.01)
-    .max(1)
-    .step(0.01)
-    .name("Galaxy Thickness")
-    .onFinishChange(createGalaxy);
-  galaxyFloder
     .add(storeData.galaxyData, "spin")
     .min(-0.1)
     .max(2.0)
@@ -234,6 +244,13 @@ function initGalaxyDebug() {
     .max(2)
     .step(0.01)
     .name("Galaxy Randomness")
+    .onFinishChange(createGalaxy);
+  galaxyFloder
+    .add(storeData.galaxyData, "randomnessPower")
+    .min(1)
+    .max(10)
+    .step(0.001)
+    .name("Galaxy Randomness Power")
     .onFinishChange(createGalaxy);
 }
 
