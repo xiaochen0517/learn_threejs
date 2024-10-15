@@ -1,8 +1,8 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import GUI from "lil-gui";
-import * as CANNON from "cannon-es";
 import Stats from "three/examples/jsm/libs/stats.module.js";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 const storeData = {
   canvasSize: {
@@ -67,14 +67,43 @@ directionalLight.castShadow = true;
 scene.add(directionalLight);
 
 /**
+ * Load Manager
+ */
+const loadManager = new THREE.LoadingManager();
+loadManager.onStart = () => {
+  console.log("Loading started");
+};
+loadManager.onLoad = () => {
+  console.log("Loading finished");
+};
+loadManager.onProgress = (url, loaded, total) => {
+  console.log(`Loading ${Math.floor((loaded / total) * 100)}%`);
+};
+
+/**
+ * Model Loader
+ */
+const loader = new GLTFLoader(loadManager);
+loader.load(
+  "/resources/model/fox/fox_material_added.gltf",
+  (gltf) => {
+    scene.add(gltf.scene);
+  },
+  undefined,
+  (error) => {
+    console.error(error);
+  }
+);
+
+/**
  * Geometry
  */
-const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
-const boxMaterial = new THREE.MeshStandardMaterial();
-const box = new THREE.Mesh(boxGeometry, boxMaterial);
-box.castShadow = true;
-box.receiveShadow = true;
-scene.add(box);
+// const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
+// const boxMaterial = new THREE.MeshStandardMaterial();
+// const box = new THREE.Mesh(boxGeometry, boxMaterial);
+// box.castShadow = true;
+// box.receiveShadow = true;
+// scene.add(box);
 
 /**
  * Render
