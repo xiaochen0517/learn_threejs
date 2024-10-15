@@ -12,7 +12,10 @@
 // import "./src/learn_basic/12_light";
 // import "./src/learn_basic/13_shadow";
 // import "./src/learn_basic/14_particles";
-import "./src/learn_basic/15_scroll_animation";
+// import "./src/learn_basic/15_scroll_animation";
 
 // import "./src/practice/1_haunted_house";
 // import "./src/practice/2_galaxy_generator";
+
+// import "./src/advanced/1_physics";
+import "./src/advanced/2_import_model";
