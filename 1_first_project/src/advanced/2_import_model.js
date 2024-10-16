@@ -3,6 +3,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import GUI from "lil-gui";
 import Stats from "three/examples/jsm/libs/stats.module.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 
 const storeData = {
   canvasSize: {
@@ -35,7 +36,7 @@ document.body.appendChild(stats.dom);
  * Camera
  */
 const camera = new THREE.PerspectiveCamera(
-  75,
+  45,
   storeData.canvasSize.width / storeData.canvasSize.height,
   0.1,
   100
@@ -83,11 +84,17 @@ loadManager.onProgress = (url, loaded, total) => {
 /**
  * Model Loader
  */
+const dracoLoader = new DRACOLoader(loadManager);
+dracoLoader.setDecoderPath("/resources/draco/");
 const loader = new GLTFLoader(loadManager);
+loader.setDRACOLoader(dracoLoader);
+
+// load fox
 loader.load(
   "/resources/model/fox/fox_material_added.gltf",
   (gltf) => {
     scene.add(gltf.scene);
+    gltf.scene.position.x = -5;
   },
   undefined,
   (error) => {
@@ -95,15 +102,31 @@ loader.load(
   }
 );
 
-/**
- * Geometry
- */
-// const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
-// const boxMaterial = new THREE.MeshStandardMaterial();
-// const box = new THREE.Mesh(boxGeometry, boxMaterial);
-// box.castShadow = true;
-// box.receiveShadow = true;
-// scene.add(box);
+// load duck
+loader.load(
+  "/resources/model/duck_draco/Duck.gltf",
+  (gltf) => {
+    scene.add(gltf.scene);
+    gltf.scene.position.x = 5;
+  },
+  undefined,
+  (error) => {
+    console.error(error);
+  }
+);
+
+// load fox animation
+let mixer;
+loader.load("/resources/model/fox_animation/Fox.gltf", (gltf) => {
+  console.log("Fox animation loaded", gltf);
+
+  mixer = new THREE.AnimationMixer(gltf.scene);
+  const action = mixer.clipAction(gltf.animations[2]);
+  action.play();
+
+  scene.add(gltf.scene);
+  gltf.scene.scale.set(0.03, 0.03, 0.03);
+});
 
 /**
  * Render
@@ -111,6 +134,11 @@ loader.load(
 const clock = new THREE.Clock();
 function render() {
   const delta = clock.getDelta();
+
+  if (mixer) {
+    mixer.update(delta);
+  }
+
   controls.update();
   stats.update();
   renderer.render(scene, camera);
