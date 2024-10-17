@@ -21,4 +21,5 @@
 // import "./src/advanced/2_import_model";
 // import "./src/advanced/3_physics_oimo";
 // import "./src/advanced/4_raycaster_mouse_events";
-import "./src/advanced/5_envrionment_map";
+// import "./src/advanced/5_envrionment_map";
+import "./src/advanced/6_envrionment_map_reflection";
