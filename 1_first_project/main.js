@@ -18,4 +18,5 @@
 // import "./src/practice/2_galaxy_generator";
 
 // import "./src/advanced/1_physics";
-import "./src/advanced/2_import_model";
+// import "./src/advanced/2_import_model";
+import "./src/advanced/3_physics_oimo";
