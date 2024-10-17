@@ -36,18 +36,35 @@ const envMapTexture = textureLoader.load(
 );
 scene.background = envMapTexture;
 
+/**
+ * Light ring
+ */
+const lightRingGeometry = new THREE.TorusGeometry(2, 0.1, 16, 100);
+const lightRingMaterial = new THREE.MeshBasicMaterial({
+  color: 0xffffff,
+});
+const lightRing = new THREE.Mesh(lightRingGeometry, lightRingMaterial);
+lightRing.position.set(0, 0, 0);
+lightRing.layers.enable(1);
+scene.add(lightRing);
+
+/**
+ * Light ring env map
+ */
 const cubeRenderTarget = new THREE.WebGLCubeRenderTarget(256, {
   type: THREE.HalfFloatType,
 });
 scene.environment = cubeRenderTarget.texture;
+// scene.background = cubeRenderTarget.texture;
 
-const cubeCamera = new THREE.CubeCamera(10, 100, cubeRenderTarget);
+const cubeCamera = new THREE.CubeCamera(1, 100, cubeRenderTarget);
+cubeCamera.layers.set(1);
 scene.add(cubeCamera);
 
-cubeCamera.children.forEach((child) => {
-  const cubeCameraHelper = new THREE.CameraHelper(child);
-  scene.add(cubeCameraHelper);
-});
+// cubeCamera.children.forEach((child) => {
+//   const cubeCameraHelper = new THREE.CameraHelper(child);
+//   scene.add(cubeCameraHelper);
+// });
 
 /**
  * GUI
@@ -103,17 +120,6 @@ const torusKnotGeometry = new THREE.TorusKnotGeometry(0.5, 0.22, 100, 16);
 const torusKnot = new THREE.Mesh(torusKnotGeometry, geometryMaterial);
 torusKnot.position.set(0, 0, 0);
 scene.add(torusKnot);
-
-/**
- * Light ring
- */
-const lightRingGeometry = new THREE.TorusGeometry(2, 0.1, 16, 100);
-const lightRingMaterial = new THREE.MeshBasicMaterial({
-  color: 0xffffff,
-});
-const lightRing = new THREE.Mesh(lightRingGeometry, lightRingMaterial);
-lightRing.position.set(0, 0, 0);
-scene.add(lightRing);
 
 /**
  * Render
