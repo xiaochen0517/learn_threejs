@@ -17,8 +17,13 @@ const scene = new THREE.Scene();
 const renderer = new THREE.WebGLRenderer({
   antialias: true,
 });
+
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 0.5;
+
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.setSize(storeData.canvasSize.width, storeData.canvasSize.height);
 document.body.appendChild(renderer.domElement);
