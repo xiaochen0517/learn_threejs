@@ -47,6 +47,7 @@ const hdrEnvMapTexture = rgbeLoader.load(
   }
 );
 scene.environment = hdrEnvMapTexture;
+scene.background = hdrEnvMapTexture;
 
 /**
  * GUI
