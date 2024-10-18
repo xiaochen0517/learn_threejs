@@ -24,4 +24,5 @@
 // import "./src/advanced/5_envrionment_map";
 // import "./src/advanced/6_envrionment_map_reflection";
 
-import "./src/shader/1_basic_shader";
+// import "./src/shader/1_basic_shader";
+import "./src/shader/2_draw_patterns";
