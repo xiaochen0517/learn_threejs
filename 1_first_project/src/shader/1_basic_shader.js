@@ -1,7 +1,13 @@
 import GUI from "lil-gui";
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import Stats from "three/examples/jsm/libs/stats.module.js";
+
+import planeFragmentShader from "./1_basic_shader_shaders/1_plane_fragment.glsl";
+import planeVertexShader from "./1_basic_shader_shaders/1_plane_vertex.glsl";
+
+import animationFlagFragmentShader from "./1_basic_shader_shaders/2_animation_flag_fragment.glsl";
+import animationFlagVertexShader from "./1_basic_shader_shaders/2_animation_flag_vertex.glsl";
 
 const storeData = {
   canvasSize: {
@@ -37,9 +43,9 @@ const camera = new THREE.PerspectiveCamera(
   45,
   storeData.canvasSize.width / storeData.canvasSize.height,
   0.1,
-  100
+  100,
 );
-camera.position.set(0, 0, 5);
+camera.position.set(0, 0, 7);
 camera.lookAt(0, 0, 0);
 scene.add(camera);
 
@@ -58,17 +64,41 @@ scene.add(axesHelper);
 /**
  * Geometry
  */
-const planeGeometry = new THREE.PlaneGeometry(2, 2, 2);
-const planeMaterial = new THREE.MeshBasicMaterial({ color: 0xaaaaaa });
+// Plane
+const planeGeometry = new THREE.PlaneGeometry(2, 2, 100, 100);
+const planeMaterial = new THREE.RawShaderMaterial({
+  vertexShader: planeVertexShader,
+  fragmentShader: planeFragmentShader,
+  side: THREE.DoubleSide,
+});
 const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+plane.position.x = -2;
 scene.add(plane);
+
+// Animate Flag
+const animateFlagGeometry = new THREE.PlaneGeometry(2, 2, 100, 100);
+const animateFlagMaterial = new THREE.RawShaderMaterial({
+  vertexShader: animationFlagVertexShader,
+  fragmentShader: animationFlagFragmentShader,
+  side: THREE.DoubleSide,
+  uniforms: {
+    uHeight: {value: 0.5},
+    uFrequency: {value: 10.0},
+    uTime: {value: 0},
+  },
+});
+const animateFlag = new THREE.Mesh(animateFlagGeometry, animateFlagMaterial);
+animateFlag.position.x = 2;
+scene.add(animateFlag);
 
 /**
  * Render
  */
 const clock = new THREE.Clock();
+
 function render() {
-  const delta = clock.getDelta();
+  const elapsedTime = clock.getElapsedTime();
+  animateFlagMaterial.uniforms.uTime.value = elapsedTime * 2;
 
   controls.update();
   stats.update();
