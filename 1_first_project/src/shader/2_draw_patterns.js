@@ -6,6 +6,9 @@ import Stats from "three/examples/jsm/libs/stats.module.js";
 import simpleFragmentShader from "./2_draw_patterns_shaders/1_simple_fragment.glsl";
 import simpleVertexShader from "./2_draw_patterns_shaders/1_simple_vertex.glsl";
 
+import randomFragmentShader from "./2_draw_patterns_shaders/2_random_fragment.glsl";
+import randomVertexShader from "./2_draw_patterns_shaders/2_random_vertex.glsl";
+
 const storeData = {
   canvasSize: {
     width: window.innerWidth,
@@ -70,8 +73,19 @@ const planeMaterial = new THREE.ShaderMaterial({
   transparent: true,
 });
 const plane = new THREE.Mesh(planeGeometry, planeMaterial);
-// plane.position.x = -2;
+plane.position.x = -1.5;
 scene.add(plane);
+
+const randomPlaneGeometry = new THREE.PlaneGeometry(2, 2, 100, 100);
+const randomPlaneMaterial = new THREE.ShaderMaterial({
+  vertexShader: randomVertexShader,
+  fragmentShader: randomFragmentShader,
+  side: THREE.DoubleSide,
+  transparent: true,
+});
+const randomPlane = new THREE.Mesh(randomPlaneGeometry, randomPlaneMaterial);
+randomPlane.position.x = 1.5;
+scene.add(randomPlane);
 
 /**
  * Render
