@@ -22,7 +22,8 @@
  */
 // import "./src/practice/1_haunted_house";
 // import "./src/practice/2_galaxy_generator";
-import "./src/practice/3_raging_sea";
+// import "./src/practice/3_raging_sea";
+import "./src/practice/4_galaxy_generator_animated";
 
 /**
  * Advanced
