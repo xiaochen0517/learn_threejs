@@ -1,3 +1,6 @@
+/**
+ * Learn Basic
+ */
 // import "./src/learn_basic/1_cube_rotation";
 // import "./src/learn_basic/2_cube_gsap";
 // import "./src/learn_basic/3_camera";
@@ -14,9 +17,16 @@
 // import "./src/learn_basic/14_particles";
 // import "./src/learn_basic/15_scroll_animation";
 
+/**
+ * Practice
+ */
 // import "./src/practice/1_haunted_house";
 // import "./src/practice/2_galaxy_generator";
+import "./src/practice/3_raging_sea";
 
+/**
+ * Advanced
+ */
 // import "./src/advanced/1_physics";
 // import "./src/advanced/2_import_model";
 // import "./src/advanced/3_physics_oimo";
@@ -24,5 +34,8 @@
 // import "./src/advanced/5_envrionment_map";
 // import "./src/advanced/6_envrionment_map_reflection";
 
+/**
+ * Shader
+ */
 // import "./src/shader/1_basic_shader";
-import "./src/shader/2_draw_patterns";
+// import "./src/shader/2_draw_patterns";
