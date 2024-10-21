@@ -38,5 +38,6 @@
 /**
  * Shader
  */
-import "./src/shader/1_basic_shader";
+// import "./src/shader/1_basic_shader";
 // import "./src/shader/2_draw_patterns";
+import "./src/shader/3_modified_materials";
