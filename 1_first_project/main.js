@@ -23,7 +23,7 @@
 // import "./src/practice/1_haunted_house";
 // import "./src/practice/2_galaxy_generator";
 // import "./src/practice/3_raging_sea";
-import "./src/practice/4_galaxy_generator_animated";
+// import "./src/practice/4_galaxy_generator_animated";
 
 /**
  * Advanced
@@ -38,5 +38,5 @@ import "./src/practice/4_galaxy_generator_animated";
 /**
  * Shader
  */
-// import "./src/shader/1_basic_shader";
+import "./src/shader/1_basic_shader";
 // import "./src/shader/2_draw_patterns";
