@@ -19,7 +19,7 @@ const renderer = new THREE.WebGLRenderer({
   antialias: true,
 });
 renderer.shadowMap.enabled = true;
-renderer.shadowMap.type = THREE.PCFShadowMap;
+renderer.shadowMap.type = THREE.VSMShadowMap;
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.setSize(storeData.canvasSize.width, storeData.canvasSize.height);
 document.body.appendChild(renderer.domElement);
@@ -40,7 +40,7 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   100,
 );
-camera.position.set(8, 8, 8);
+camera.position.set(2, 4, 7);
 camera.lookAt(0, 0, 0);
 scene.add(camera);
 
