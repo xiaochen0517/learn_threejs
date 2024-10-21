@@ -24,6 +24,7 @@
 // import "./src/practice/2_galaxy_generator";
 // import "./src/practice/3_raging_sea";
 // import "./src/practice/4_galaxy_generator_animated";
+import "./src/practice/5_coffee_cup";
 
 /**
  * Advanced
@@ -40,4 +41,4 @@
  */
 // import "./src/shader/1_basic_shader";
 // import "./src/shader/2_draw_patterns";
-import "./src/shader/3_modified_materials";
+// import "./src/shader/3_modified_materials";
