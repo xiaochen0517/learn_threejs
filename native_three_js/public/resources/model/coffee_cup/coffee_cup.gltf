@@ -1,6 +1,6 @@
 {
 	"asset":{
-		"generator":"Khronos glTF Blender I/O v4.2.70",
+		"generator":"Khronos glTF Blender I/O v4.2.69",
 		"version":"2.0"
 	},
 	"extensionsUsed":[
@@ -211,7 +211,7 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":5184,
+			"count":1369,
 			"max":[
 				0.5287595391273499,
 				1.2311391830444336,
@@ -227,13 +227,13 @@
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":5184,
+			"count":1369,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":5184,
+			"count":1369,
 			"type":"VEC2"
 		},
 		{
@@ -245,10 +245,10 @@
 		{
 			"bufferView":4,
 			"componentType":5126,
-			"count":4672,
+			"count":5064,
 			"max":[
 				1.0427685976028442,
-				1.5337978601455688,
+				1.5335432291030884,
 				0.5568535923957825
 			],
 			"min":[
@@ -261,19 +261,19 @@
 		{
 			"bufferView":5,
 			"componentType":5126,
-			"count":4672,
+			"count":5064,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":6,
 			"componentType":5126,
-			"count":4672,
+			"count":5064,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":7,
 			"componentType":5123,
-			"count":22368,
+			"count":24192,
 			"type":"SCALAR"
 		},
 		{
@@ -320,80 +320,80 @@
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":62208,
+			"byteLength":16428,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":62208,
-			"byteOffset":62208,
+			"byteLength":16428,
+			"byteOffset":16428,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":41472,
-			"byteOffset":124416,
+			"byteLength":10952,
+			"byteOffset":32856,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":15552,
-			"byteOffset":165888,
+			"byteOffset":43808,
 			"target":34963
 		},
 		{
 			"buffer":0,
-			"byteLength":56064,
-			"byteOffset":181440,
+			"byteLength":60768,
+			"byteOffset":59360,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":56064,
-			"byteOffset":237504,
+			"byteLength":60768,
+			"byteOffset":120128,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":37376,
-			"byteOffset":293568,
+			"byteLength":40512,
+			"byteOffset":180896,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":44736,
-			"byteOffset":330944,
+			"byteLength":48384,
+			"byteOffset":221408,
 			"target":34963
 		},
 		{
 			"buffer":0,
 			"byteLength":288,
-			"byteOffset":375680,
+			"byteOffset":269792,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":288,
-			"byteOffset":375968,
+			"byteOffset":270080,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":192,
-			"byteOffset":376256,
+			"byteOffset":270368,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":192,
-			"byteOffset":376448,
+			"byteOffset":270560,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":72,
-			"byteOffset":376640,
+			"byteOffset":270752,
 			"target":34963
 		}
 	],
@@ -405,7 +405,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":376712,
+			"byteLength":270824,
 			"uri":"coffee_cup.bin"
 		}
 	]

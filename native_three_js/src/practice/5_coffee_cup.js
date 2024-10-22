@@ -69,7 +69,7 @@ directionalLight.shadow.camera.left = -7;
 directionalLight.shadow.camera.top = 7;
 directionalLight.shadow.camera.right = 7;
 directionalLight.shadow.camera.bottom = -7;
-directionalLight.position.set(5, 5, 5);
+directionalLight.position.set(-5, 5, 3);
 scene.add(directionalLight);
 
 // const directionalLightCameraHelper = new THREE.CameraHelper(directionalLight.shadow.camera);
