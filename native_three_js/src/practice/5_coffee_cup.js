@@ -4,6 +4,9 @@ import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import Stats from "three/examples/jsm/libs/stats.module.js";
 import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
 
+import fragmentShader from "./5_coffee_cup/fragment.glsl";
+import vertexShader from "./5_coffee_cup/vertex.glsl";
+
 const storeData = {
   canvasSize: {
     width: window.innerWidth,
@@ -40,15 +43,15 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   100,
 );
-camera.position.set(2, 4, 7);
-camera.lookAt(0, 0, 0);
 scene.add(camera);
+camera.position.set(0, 5, 8);
 
 /**
  * Controls
  */
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
+controls.target.set(0, 1, 0);
 
 /**
  * Helper
@@ -95,12 +98,40 @@ loader.load(
 );
 
 /**
+ * Load berlin noise texture
+ */
+const loaderTexture = new THREE.TextureLoader();
+const noiseTexture = loaderTexture.load("/resources/texture/noise/noiseTexture.png");
+
+/**
+ * Smoke
+ */
+const smokeGeometry = new THREE.PlaneGeometry(1, 1, 12, 40);
+const smokeMaterial = new THREE.ShaderMaterial({
+  fragmentShader,
+  vertexShader,
+  side: THREE.DoubleSide,
+  // wireframe: true,
+  uniforms: {
+    uTime: new THREE.Uniform(0),
+    uNoiseTexture: new THREE.Uniform(noiseTexture),
+  },
+});
+const smoke = new THREE.Mesh(smokeGeometry, smokeMaterial);
+smoke.translateY(0.5);
+smoke.scale.set(1, 3, 1);
+smoke.position.y = 2.8;
+scene.add(smoke);
+
+/**
  * Render
  */
 const clock = new THREE.Clock();
 
 function render() {
   const elapsedTime = clock.getElapsedTime();
+
+  smokeMaterial.uniforms.uTime.value = elapsedTime * 0.5;
 
   controls.update();
   stats.update();
