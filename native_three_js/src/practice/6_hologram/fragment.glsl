@@ -10,11 +10,19 @@ void main() {
     stripes = mod((stripes - uTime * 0.02) * 20.0, 1.0);
     stripes = pow(stripes, 3.0);
 
+    vec3 normal = normalize(vNormal);
+    if (!gl_FrontFacing) {
+        normal = -normal;
+    }
+
     vec3 viewDirection = normalize(vPosition - cameraPosition);
-    float fresnel = dot(viewDirection, vNormal) + 1.0;
+    float fresnel = dot(viewDirection, normal) + 1.0;
+
+    float holographic = stripes * fresnel;
+    holographic *= 1.2;
 
     vec3 color = vec3(1.0);
-    gl_FragColor = vec4(color, fresnel);
+    gl_FragColor = vec4(color, holographic);
 
     #include <tonemapping_fragment>
     #include <colorspace_fragment>

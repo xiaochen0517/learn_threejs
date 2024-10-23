@@ -71,6 +71,7 @@ const hologramMaterial = new THREE.ShaderMaterial({
   vertexShader,
   transparent: true,
   depthWrite: false,
+  side: THREE.DoubleSide,
   // wireframe: true,
   uniforms: {
     uTime: new THREE.Uniform(0),
@@ -78,7 +79,7 @@ const hologramMaterial = new THREE.ShaderMaterial({
   },
 });
 
-const torusKnotGeometry = new THREE.TorusKnotGeometry(0.25, 0.15, 128, 32);
+const torusKnotGeometry = new THREE.TorusKnotGeometry(0.25, 0.15, 128, 16);
 const torusKnot = new THREE.Mesh(torusKnotGeometry, hologramMaterial);
 scene.add(torusKnot);
 
