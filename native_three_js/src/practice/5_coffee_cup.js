@@ -44,14 +44,14 @@ const camera = new THREE.PerspectiveCamera(
   100,
 );
 scene.add(camera);
-camera.position.set(0, 5, 8);
+camera.position.set(3, 7, 10);
 
 /**
  * Controls
  */
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
-controls.target.set(0, 1, 0);
+controls.target.set(0, 2, 0);
 
 /**
  * Helper
@@ -102,15 +102,19 @@ loader.load(
  */
 const loaderTexture = new THREE.TextureLoader();
 const noiseTexture = loaderTexture.load("/resources/texture/noise/noiseTexture.png");
+noiseTexture.wrapS = THREE.RepeatWrapping;
+noiseTexture.wrapT = THREE.RepeatWrapping;
 
 /**
  * Smoke
  */
-const smokeGeometry = new THREE.PlaneGeometry(1, 1, 12, 40);
+const smokeGeometry = new THREE.PlaneGeometry(1, 1, 12, 64);
 const smokeMaterial = new THREE.ShaderMaterial({
   fragmentShader,
   vertexShader,
   side: THREE.DoubleSide,
+  transparent: true,
+  depthWrite: false,
   // wireframe: true,
   uniforms: {
     uTime: new THREE.Uniform(0),
@@ -119,9 +123,10 @@ const smokeMaterial = new THREE.ShaderMaterial({
 });
 const smoke = new THREE.Mesh(smokeGeometry, smokeMaterial);
 smoke.translateY(0.5);
-smoke.scale.set(1, 3, 1);
-smoke.position.y = 2.8;
+smoke.scale.set(1, 5, 1);
+smoke.position.y = 3.7;
 scene.add(smoke);
+
 
 /**
  * Render
@@ -131,7 +136,7 @@ const clock = new THREE.Clock();
 function render() {
   const elapsedTime = clock.getElapsedTime();
 
-  smokeMaterial.uniforms.uTime.value = elapsedTime * 0.5;
+  smokeMaterial.uniforms.uTime.value = elapsedTime;
 
   controls.update();
   stats.update();
