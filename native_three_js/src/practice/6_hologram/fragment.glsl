@@ -1,5 +1,6 @@
 uniform sampler2D uNoiseTexture;
 uniform float uTime;
+uniform vec3 uColor;
 
 varying vec3 vPosition;
 varying vec3 vNormal;
@@ -7,7 +8,7 @@ varying vec3 vNormal;
 void main() {
     float stripes = vPosition.y;
 
-    stripes = mod((stripes - uTime * 0.02) * 20.0, 1.0);
+    stripes = mod((stripes - uTime * 0.02) * 30.0, 1.0);
     stripes = pow(stripes, 3.0);
 
     vec3 normal = normalize(vNormal);
@@ -22,7 +23,7 @@ void main() {
     holographic *= 1.2;
 
     vec3 color = vec3(1.0);
-    gl_FragColor = vec4(color, holographic);
+    gl_FragColor = vec4(uColor, holographic);
 
     #include <tonemapping_fragment>
     #include <colorspace_fragment>

@@ -43,7 +43,7 @@ const camera = new THREE.PerspectiveCamera(
   100,
 );
 scene.add(camera);
-camera.position.set(0, 0, 8);
+camera.position.set(0, 0, 4);
 
 /**
  * Controls
@@ -76,8 +76,12 @@ const hologramMaterial = new THREE.ShaderMaterial({
   uniforms: {
     uTime: new THREE.Uniform(0),
     uNoiseTexture: new THREE.Uniform(noiseTexture),
+    uColor: new THREE.Uniform(new THREE.Color(0x70c1ff)),
   },
 });
+
+gui.addColor(hologramMaterial.uniforms.uColor, "value")
+  .name("Color");
 
 const torusKnotGeometry = new THREE.TorusKnotGeometry(0.25, 0.15, 128, 16);
 const torusKnot = new THREE.Mesh(torusKnotGeometry, hologramMaterial);
@@ -96,11 +100,13 @@ const clock = new THREE.Clock();
 
 function render() {
   const elapsedTime = clock.getElapsedTime();
-
+  // console.log(elapsedTime);
   hologramMaterial.uniforms.uTime.value = elapsedTime;
 
-  torusKnot.rotation.y = elapsedTime * 0.5;
-  ball.rotation.y = elapsedTime * 0.5;
+  // torusKnot.rotation.y = elapsedTime * 0.2;
+  // torusKnot.rotation.x = elapsedTime * 0.3;
+  // ball.rotation.y = elapsedTime * 0.2;
+  // ball.rotation.x = elapsedTime * 0.3;
 
   controls.update();
   stats.update();
