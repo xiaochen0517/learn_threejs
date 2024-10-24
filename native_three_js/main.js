@@ -27,7 +27,7 @@
 // import "./src/practice/5_coffee_cup";
 // import "./src/practice/6_hologram";
 // import "./src/practice/7_vertex_particle";
-import "./src/practice/8_firework";
+// import "./src/practice/8_firework";
 
 /**
  * Advanced
@@ -35,9 +35,10 @@ import "./src/practice/8_firework";
 // import "./src/advanced/1_physics";
 // import "./src/advanced/2_import_model";
 // import "./src/advanced/3_physics_oimo";
-// import "./src/advanced/4_raycaster_mouse_events";
-// import "./src/advanced/5_envrionment_map";
-// import "./src/advanced/6_envrionment_map_reflection";
+// import "./src/advanced/4_ray_tracing_mouse_events";
+// import "./src/advanced/5_environment_map";
+// import "./src/advanced/6_environment_map_reflection";
+import "./src/advanced/7_post_processing";
 
 /**
  * Shader
