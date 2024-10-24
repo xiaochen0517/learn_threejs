@@ -26,7 +26,8 @@
 // import "./src/practice/4_galaxy_generator_animated";
 // import "./src/practice/5_coffee_cup";
 // import "./src/practice/6_hologram";
-import "./src/practice/7_vertex_particle";
+// import "./src/practice/7_vertex_particle";
+import "./src/practice/8_firework";
 
 /**
  * Advanced
