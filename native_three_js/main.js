@@ -38,7 +38,8 @@
 // import "./src/advanced/4_ray_tracing_mouse_events";
 // import "./src/advanced/5_environment_map";
 // import "./src/advanced/6_environment_map_reflection";
-import "./src/advanced/7_post_processing";
+// import "./src/advanced/7_post_processing";
+import "./src/advanced/8_loading_progress";
 
 /**
  * Shader
