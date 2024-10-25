@@ -14,6 +14,9 @@ import {
 } from "three/addons";
 import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
 
+import fragmentShader from "./7_post_processing/fragment.glsl";
+import vertexShader from "./7_post_processing/vertex.glsl";
+
 const storeData = {
   canvasSize: {
     width: window.innerWidth,
@@ -107,10 +110,10 @@ gltfLoader.load(
 // scene.add(ambientLight);
 
 /**
- * Post processing
+ * Post-processing
  */
 const renderTarget = new THREE.WebGLRenderTarget(800, 600, {
-  samples: 3,
+  samples: renderer.getPixelRatio() === 1 ? 2 : 0,
 });
 
 const effectComposer = new EffectComposer(renderer, renderTarget);
@@ -135,6 +138,27 @@ effectComposer.addPass(rgbShiftPass);
 const glitchPass = new GlitchPass();
 glitchPass.enabled = false;
 effectComposer.addPass(glitchPass);
+
+const tintShader = {
+  uniforms: {
+    tDiffuse: new THREE.Uniform(null),
+    uColor: new THREE.Uniform(new THREE.Color("black")),
+    uStrength: new THREE.Uniform(0.1),
+  },
+  vertexShader,
+  fragmentShader,
+};
+const tintPass = new ShaderPass(tintShader);
+// tintPass.enabled = false;
+effectComposer.addPass(tintPass);
+
+gui.addColor(tintPass.material.uniforms.uColor, "value")
+  .name("Tint color");
+gui.add(tintPass.material.uniforms.uStrength, "value")
+  .min(0)
+  .max(1)
+  .step(0.01)
+  .name("Tint strength");
 
 /**
  * Render
