@@ -9,6 +9,12 @@ import gsap from "gsap";
 import fragmentShader from "./8_loading_progress/fragment.glsl";
 import vertexShader from "./8_loading_progress/vertex.glsl";
 
+/**
+ * Spector.js
+ */
+const spector = new SPECTOR.Spector();
+spector.displayUI();
+
 const storeData = {
   canvasSize: {
     width: window.innerWidth,
@@ -27,11 +33,10 @@ const renderer = new THREE.WebGLRenderer({
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 0.5;
 renderer.physicallyCorrectLights = true;
-renderer.outputEncoding = THREE.sRGBEncoding;
-renderer.toneMapping = THREE.ReinhardToneMapping;
-renderer.toneMappingExposure = 1.5;
+// renderer.outputEncoding = THREE.sRGBEncoding;
+// renderer.toneMapping = THREE.ReinhardToneMapping;
+// renderer.toneMappingExposure = 1.5;
 
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.setSize(storeData.canvasSize.width, storeData.canvasSize.height);
@@ -89,13 +94,14 @@ scene.add(overlay);
  */
 // 使用字符串模板创建一个div元素
 const progressBar = `
-<div style="position: fixed;width: 100vh;height: 100vh;display: flex;justify-content: center;align-items: center">
+<div id="progressContainer" style="position: fixed;width: 100vh;height: 100vh;display: flex;justify-content: center;align-items: center">
   <div id="progressDiv" style="font-size: 3rem;font-weight: bold;color: white;"></div>
 </div>
 `;
 // 将div元素插入到body中
 document.body.insertAdjacentHTML("afterbegin", progressBar);
 
+const progressContainer = document.getElementById("progressContainer");
 const progressDiv = document.getElementById("progressDiv");
 
 /**
@@ -123,6 +129,7 @@ loadingManager.onLoad = () => {
     delay: 1,
     onComplete: () => {
       progressDiv.style.display = "none";
+      progressContainer.style.display = "none";
     },
   });
 };
@@ -155,6 +162,7 @@ texture.flipY = false;
 
 const material = new THREE.MeshBasicMaterial({
   map: texture,
+  side: THREE.DoubleSide,
 });
 
 /**
