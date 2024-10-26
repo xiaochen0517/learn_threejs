@@ -8,12 +8,14 @@ import gsap from "gsap";
 
 import fragmentShader from "./8_loading_progress/fragment.glsl";
 import vertexShader from "./8_loading_progress/vertex.glsl";
+import {LinearSRGBColorSpace} from "three";
 
 /**
  * Spector.js
  */
-const spector = new SPECTOR.Spector();
-spector.displayUI();
+// const SPECTOR = require("spectorjs");
+// const spector = new SPECTOR.Spector();
+// spector.displayUI();
 
 const storeData = {
   canvasSize: {
@@ -30,13 +32,12 @@ const renderer = new THREE.WebGLRenderer({
   antialias: true,
 });
 
-renderer.shadowMap.enabled = true;
-renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+// renderer.shadowMap.enabled = true;
+// renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+// renderer.physicallyCorrectLights = true;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.physicallyCorrectLights = true;
-// renderer.outputEncoding = THREE.sRGBEncoding;
-// renderer.toneMapping = THREE.ReinhardToneMapping;
-// renderer.toneMappingExposure = 1.5;
+// renderer.toneMappingExposure = 1.0;
+renderer.outputEncoding = THREE.sRGBEncoding;
 
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.setSize(storeData.canvasSize.width, storeData.canvasSize.height);
@@ -159,10 +160,10 @@ scene.environment = hdrEnvMapTexture;
 const loaderTexture = new THREE.TextureLoader(loadingManager);
 const texture = loaderTexture.load("/resources/texture/little_room/baked.jpg");
 texture.flipY = false;
+texture.encoding = THREE.sRGBEncoding;
 
 const material = new THREE.MeshBasicMaterial({
   map: texture,
-  side: THREE.DoubleSide,
 });
 
 /**
