@@ -39,7 +39,8 @@
 // import "./src/advanced/5_environment_map";
 // import "./src/advanced/6_environment_map_reflection";
 // import "./src/advanced/7_post_processing";
-import "./src/advanced/8_loading_progress";
+// import "./src/advanced/8_loading_progress";
+import "./src/advanced/9_import_baked_scene";
 
 /**
  * Shader
