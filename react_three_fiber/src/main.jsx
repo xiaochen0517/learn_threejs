@@ -8,7 +8,12 @@ createRoot(document.getElementById("root"))
   .render(
     <>
       <StrictMode>
-        <Canvas>
+        <Canvas
+          camera={{
+            fov: 45,
+            position: [6, 6, 8],
+          }}
+        >
           <App/>
         </Canvas>
       </StrictMode>

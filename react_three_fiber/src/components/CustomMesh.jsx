@@ -1,9 +1,15 @@
 import {DoubleSide} from "three";
-import {useMemo} from "react";
+import {useEffect, useMemo, useRef} from "react";
 
 export default function CustomMesh({position}) {
 
   const vertexCount = 10 * 3;
+
+  const geometryRef = useRef();
+
+  useEffect(() => {
+    geometryRef.current.computeVertexNormals();
+  });
 
   const positions = useMemo(() => {
     console.log("create positions");
@@ -21,7 +27,7 @@ export default function CustomMesh({position}) {
 
   return (
     <mesh position={position || [0, 0, 0]}>
-      <bufferGeometry>
+      <bufferGeometry ref={geometryRef}>
         <bufferAttribute
           attach="attributes-position"
           count={vertexCount}

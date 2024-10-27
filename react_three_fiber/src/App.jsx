@@ -42,8 +42,6 @@ function App() {
         </mesh>
 
         <CustomMesh/>
-
-        <CustomMesh position={[0, 0, -3]}/>
       </group>
     </>
   );
