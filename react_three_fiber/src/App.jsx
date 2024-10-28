@@ -1,48 +1,26 @@
-import {extend, useFrame, useThree} from "@react-three/fiber";
-import {useRef} from "react";
-
-// use OrbitControls
-import {OrbitControls} from "three/examples/jsm/controls/OrbitControls.js";
-import {DoubleSide} from "three";
-import CustomMesh from "./components/CustomMesh.jsx";
-
-extend({OrbitControls});
+import {Canvas} from "@react-three/fiber";
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import FirstFiberView from "./view/FirstFiberView.jsx";
 
 function App() {
-  const three = useThree();
 
-  const meshRef = useRef();
-  const groupRef = useRef();
-
-  useFrame((_state, delta) => {
-    meshRef.current.rotation.x += delta;
-    meshRef.current.rotation.y += delta;
-
-    // groupRef.current.rotation.y += delta;
-  });
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <FirstFiberView/>,
+    },
+  ]);
 
   return (
     <>
-      <orbitControls args={[three.camera, three.gl.domElement]}/>
-
-      <directionalLight position={[5, 5, 5]}/>
-
-      <group ref={groupRef}>
-        <mesh ref={meshRef} position-x={3}>
-          <torusKnotGeometry args={[0.7, 0.30, 128, 32]}/>
-          <meshStandardMaterial color="yellow"/>
-        </mesh>
-        <mesh position-x={-3}>
-          <boxGeometry args={[2, 2, 2]}/>
-          <meshStandardMaterial color="blue"/>
-        </mesh>
-        <mesh rotation-x={-Math.PI / 2} position-y={-1.5}>
-          <planeGeometry args={[10, 10]}/>
-          <meshStandardMaterial color="green" side={DoubleSide}/>
-        </mesh>
-
-        <CustomMesh/>
-      </group>
+      <Canvas
+        camera={{
+          fov: 45,
+          position: [6, 6, 8],
+        }}
+      >
+        <RouterProvider router={router}/>
+      </Canvas>
     </>
   );
 }
