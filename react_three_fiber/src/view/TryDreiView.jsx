@@ -8,7 +8,7 @@ import {
   Text,
   TransformControls,
 } from "@react-three/drei";
-import React, {useRef} from "react";
+import {useRef} from "react";
 import {useThree} from "@react-three/fiber";
 
 export default function TryDreiView() {
@@ -47,7 +47,7 @@ export default function TryDreiView() {
 
     <Float speed={3}>
       <Text
-        font="/HarmonyOS_Sans_SC_Black.ttf"
+        font="/fonts/HarmonyOS_Sans_SC_Black.ttf"
         fontSize={1}
         position={[0, 3, 0]}
         color="black"
@@ -58,7 +58,7 @@ export default function TryDreiView() {
         Hello, Drei!
       </Text>
       <Text
-        font="/HarmonyOS_Sans_SC_Black.ttf"
+        font="/fonts/HarmonyOS_Sans_SC_Black.ttf"
         fontSize={0.75}
         position={[0, 2, 0]}
         color="black"
@@ -71,8 +71,7 @@ export default function TryDreiView() {
     </Float>
 
     <Plane args={[10, 10]} rotation-x={-Math.PI / 2} position-y={-1}>
-      {/*<meshStandardMaterial color="skyblue"/>*/}
-      <MeshReflectorMaterial color="skyblue;l" resolution={512} mirror={0.5}/>
+      <MeshReflectorMaterial color="skyblue" resolution={512} mirror={0.5}/>
     </Plane>
   </>;
 }

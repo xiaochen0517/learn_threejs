@@ -12,7 +12,7 @@ function App() {
       element: <FirstFiberView/>,
     },
     {
-      path: "try-drei",
+      path: "/try-drei",
       title: "Try Drei",
       element: <TryDreiView/>,
     },
