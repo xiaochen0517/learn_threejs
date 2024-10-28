@@ -15,6 +15,9 @@ export default function FirstFiberView() {
   three.camera.position.set(5, 5, 5);
   three.camera.lookAt(0, 0, 0);
 
+  // three.flat = true;
+  console.log(three);
+
   const meshRef = useRef();
   const groupRef = useRef();
 
@@ -28,6 +31,7 @@ export default function FirstFiberView() {
   return <>
     <orbitControls args={[three.camera, three.gl.domElement]}/>
 
+    <ambientLight intensity={0.5}/>
     <directionalLight position={[5, 5, 5]}/>
 
     <group ref={groupRef}>
