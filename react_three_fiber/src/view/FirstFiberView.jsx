@@ -11,6 +11,9 @@ extend({OrbitControls});
 export default function FirstFiberView() {
 
   const three = useThree();
+  // camera position settings
+  three.camera.position.set(5, 5, 5);
+  three.camera.lookAt(0, 0, 0);
 
   const meshRef = useRef();
   const groupRef = useRef();
