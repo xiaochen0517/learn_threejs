@@ -3,6 +3,7 @@ import FirstFiberView from "./view/FirstFiberView.jsx";
 import {Canvas} from "@react-three/fiber";
 import TryDreiView from "./view/TryDreiView.jsx";
 import HomeView from "./view/HomeView.jsx";
+import DebugView from "./view/DebugView.jsx";
 
 function App() {
 
@@ -21,6 +22,11 @@ function App() {
       path: "/try-drei",
       title: "Try Drei",
       element: <TryDreiView/>,
+    },
+    {
+      path: "/debug",
+      title: "Debug",
+      element: <DebugView/>,
     },
   ]);
 
