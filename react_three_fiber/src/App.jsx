@@ -2,12 +2,18 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import FirstFiberView from "./view/FirstFiberView.jsx";
 import {Canvas} from "@react-three/fiber";
 import TryDreiView from "./view/TryDreiView.jsx";
+import HomeView from "./view/HomeView.jsx";
 
 function App() {
 
   const router = createBrowserRouter([
     {
       path: "/",
+      title: "Home",
+      element: <HomeView/>,
+    },
+    {
+      path: "/fist-fiber",
       title: "First Fiber Scene",
       element: <FirstFiberView/>,
     },

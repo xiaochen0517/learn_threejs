@@ -1,5 +1,5 @@
 import {DoubleSide} from "three";
-import CustomMesh from "../components/CustomMesh.jsx";
+import CustomMesh from "../components/first_fiber/CustomMesh.jsx";
 import {extend, useFrame, useThree} from "@react-three/fiber";
 import {useRef} from "react";
 
