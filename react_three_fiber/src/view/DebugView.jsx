@@ -1,6 +1,7 @@
 import {OrbitControls, Plane} from "@react-three/drei";
 import {useThree} from "@react-three/fiber";
 import {useControls} from "leva";
+import {Perf} from "r3f-perf";
 
 export default function DebugView() {
 
@@ -29,9 +30,11 @@ export default function DebugView() {
   });
 
   return <>
+    <Perf position="top-left" style={{marginTop: "3rem"}}/>
+
     <OrbitControls makeDefault/>
 
-    <ambientLight className="" intensity={1.0}/>
+    <ambientLight intensity={1.0}/>
     <directionalLight position={[10, 10, 10]}/>
 
     <mesh position={[position.x, position.y, position.z]} visible={cubeVisible}>
