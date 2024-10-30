@@ -4,6 +4,7 @@ import {Canvas} from "@react-three/fiber";
 import TryDreiView from "./view/TryDreiView.jsx";
 import HomeView from "./view/HomeView.jsx";
 import DebugView from "./view/DebugView.jsx";
+import EnvAndStageView from "./view/EnvAndStageView.jsx";
 
 function App() {
 
@@ -28,6 +29,11 @@ function App() {
       title: "Debug",
       element: <DebugView/>,
     },
+    {
+      path: "/env-and-stage",
+      title: "Env And Stage",
+      element: <EnvAndStageView/>,
+    },
   ]);
 
   return (
@@ -46,7 +52,7 @@ function App() {
           }
         </ul>
       </nav>
-      <Canvas>
+      <Canvas shadows={true}>
         <RouterProvider router={router}/>
       </Canvas>
     </>
