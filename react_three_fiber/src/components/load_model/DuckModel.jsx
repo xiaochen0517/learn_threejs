@@ -1,5 +1,6 @@
 import {useLoader} from "@react-three/fiber";
 import {DRACOLoader, GLTFLoader} from "three/addons";
+import {useGLTF} from "@react-three/drei";
 
 export default function DuckModel() {
 
@@ -11,5 +12,7 @@ export default function DuckModel() {
 
   return <>
     <primitive object={duckModel.scene}/>
-  </>
+  </>;
 }
+
+useGLTF.preload("/models/duck_draco/Duck.gltf");
