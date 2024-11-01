@@ -5,6 +5,7 @@ import TryDreiView from "./view/TryDreiView.jsx";
 import HomeView from "./view/HomeView.jsx";
 import DebugView from "./view/DebugView.jsx";
 import EnvAndStageView from "./view/EnvAndStageView.jsx";
+import LoadModelView from "./view/LoadModelView.jsx";
 
 function App() {
 
@@ -33,6 +34,11 @@ function App() {
       path: "/env-and-stage",
       title: "Env And Stage",
       element: <EnvAndStageView/>,
+    },
+    {
+      path: "/load-model",
+      title: "Load Model",
+      element: <LoadModelView/>,
     },
   ]);
 
