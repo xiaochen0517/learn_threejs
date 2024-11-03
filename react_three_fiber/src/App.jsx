@@ -6,6 +6,7 @@ import HomeView from "./view/HomeView.jsx";
 import DebugView from "./view/DebugView.jsx";
 import EnvAndStageView from "./view/EnvAndStageView.jsx";
 import LoadModelView from "./view/LoadModelView.jsx";
+import Text3DView from "./view/Text3DView.jsx";
 
 function App() {
 
@@ -39,6 +40,11 @@ function App() {
       path: "/load-model",
       title: "Load Model",
       element: <LoadModelView/>,
+    },
+    {
+      path: "/text-3d",
+      title: "Text 3D",
+      element: <Text3DView/>,
     },
   ]);
 
