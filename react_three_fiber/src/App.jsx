@@ -51,7 +51,7 @@ function App() {
   return (
     <>
       <nav>
-        <ul className="p-2 flex flex-row gap-2 bg-neutral-100 border-b text-neutral-100 overflow-x-auto">
+        <ul className="p-2 flex flex-row gap-2 bg-neutral-100 border-b text-neutral-100 overflow-x-auto text-nowrap">
           {
             router.routes.map((route, index) => (
               <li
