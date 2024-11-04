@@ -2,8 +2,9 @@ import {OrbitControls, Plane} from "@react-three/drei";
 import {useThree} from "@react-three/fiber";
 import {folder, useControls} from "leva";
 import {Perf} from "r3f-perf";
+import {useRef} from "react";
 
-export default function DebugView() {
+export default function MouseEventView() {
 
   const three = useThree();
 
@@ -67,6 +68,35 @@ export default function DebugView() {
     defaultSceneData: folder(defaultSceneItemsDebugData, {collapsed: false}),
   });
 
+  const cubeRef = useRef();
+  const sphereRef = useRef();
+
+  const cubeClick = (event) => {
+    event.stopPropagation();
+    cubeRef.current.material.color.set(`hsl(${Math.random() * 360}, 100%, 75%)`);
+  };
+  const sphereClick = (event) => {
+    event.stopPropagation();
+    sphereRef.current.material.color.set(`hsl(${Math.random() * 360}, 100%, 75%)`);
+  };
+
+  const cubeHover = (event) => {
+    event.stopPropagation();
+    cubeRef.current.scale.set(1.5, 1.5, 1.5);
+  };
+  const cubeUnhover = (event) => {
+    event.stopPropagation();
+    cubeRef.current.scale.set(1, 1, 1);
+  };
+  const sphereHover = (event) => {
+    event.stopPropagation();
+    sphereRef.current.scale.set(1.5, 1.5, 1.5);
+  };
+  const sphereUnhover = (event) => {
+    event.stopPropagation();
+    sphereRef.current.scale.set(1, 1, 1);
+  };
+
   return <>
     <Perf position="top-left" style={{marginTop: "3rem"}}/>
 
@@ -76,15 +106,23 @@ export default function DebugView() {
     <directionalLight position={[10, 10, 10]}/>
 
     <mesh
+      ref={cubeRef}
       position={[debugData.cubePosition.x, debugData.cubePosition.y, debugData.cubePosition.z]}
       visible={debugData.cubeVisible}
+      onClick={cubeClick}
+      onPointerOver={cubeHover}
+      onPointerOut={cubeUnhover}
     >
       <boxGeometry args={[1.5, 1.5, 1.5]}/>
       <meshStandardMaterial color={debugData.cubeColor}/>
     </mesh>
     <mesh
+      ref={sphereRef}
       position={[debugData.spherePosition.x, debugData.spherePosition.y, debugData.spherePosition.z]}
       visible={debugData.sphereVisible}
+      onClick={sphereClick}
+      onPointerOver={sphereHover}
+      onPointerOut={sphereUnhover}
     >
       <sphereGeometry args={[1]}/>
       <meshStandardMaterial color={debugData.sphereColor}/>

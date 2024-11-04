@@ -7,6 +7,7 @@ import DebugView from "./view/DebugView.jsx";
 import EnvAndStageView from "./view/EnvAndStageView.jsx";
 import LoadModelView from "./view/LoadModelView.jsx";
 import Text3DView from "./view/Text3DView.jsx";
+import MouseEventView from "./view/MouseEventView.jsx";
 
 function App() {
 
@@ -46,6 +47,11 @@ function App() {
       title: "Text 3D",
       element: <Text3DView/>,
     },
+    {
+      path: "/mouse-event",
+      title: "Mouse Event",
+      element: <MouseEventView/>,
+    }
   ]);
 
   return (
