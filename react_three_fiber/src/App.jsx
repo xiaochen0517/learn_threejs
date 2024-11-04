@@ -8,6 +8,7 @@ import EnvAndStageView from "./view/EnvAndStageView.jsx";
 import LoadModelView from "./view/LoadModelView.jsx";
 import Text3DView from "./view/Text3DView.jsx";
 import MouseEventView from "./view/MouseEventView.jsx";
+import PostProcessingView from "./view/PostProcessingView.jsx";
 
 function App() {
 
@@ -51,7 +52,12 @@ function App() {
       path: "/mouse-event",
       title: "Mouse Event",
       element: <MouseEventView/>,
-    }
+    },
+    {
+      path: "/post-processing",
+      title: "Post Processing",
+      element: <PostProcessingView/>,
+    },
   ]);
 
   return (

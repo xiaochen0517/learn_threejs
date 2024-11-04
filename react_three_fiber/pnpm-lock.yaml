@@ -14,9 +14,15 @@ importers:
       '@react-three/fiber':
         specifier: ^8.17.10
         version: 8.17.10(react-dom@18.3.1(react@18.3.1))(react-native@0.76.0(@babel/core@7.25.9)(@babel/preset-env@7.25.9(@babel/core@7.25.9))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)(three@0.169.0)
+      '@react-three/postprocessing':
+        specifier: ^2.16.3
+        version: 2.16.3(@react-three/fiber@8.17.10(react-dom@18.3.1(react@18.3.1))(react-native@0.76.0(@babel/core@7.25.9)(@babel/preset-env@7.25.9(@babel/core@7.25.9))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)(three@0.169.0))(@types/three@0.163.0)(react@18.3.1)(three@0.169.0)
       leva:
         specifier: 0.9.34
         version: 0.9.34(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      postprocessing:
+        specifier: ^6.36.3
+        version: 6.36.3(three@0.169.0)
       r3f-perf:
         specifier: ^7.2.2
         version: 7.2.2(@react-three/fiber@8.17.10(react-dom@18.3.1(react@18.3.1))(react-native@0.76.0(@babel/core@7.25.9)(@babel/preset-env@7.25.9(@babel/core@7.25.9))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)(three@0.169.0))(@types/react@18.3.12)(@types/three@0.163.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(three@0.169.0)
@@ -1211,6 +1217,13 @@ packages:
       react-native:
         optional: true
 
+  '@react-three/postprocessing@2.16.3':
+    resolution: {integrity: sha512-ftodXpUsy0/mzn0KqyV7MBau71dD9C5UOFnB3kHhCLNoxjKYQWZa9do0olJTSkl3owYXRfNHcLriK1Xn8wxZJw==}
+    peerDependencies:
+      '@react-three/fiber': '>=8.0'
+      react: '>=18.0'
+      three: '>= 0.138.0'
+
   '@remix-run/router@1.20.0':
     resolution: {integrity: sha512-mUnk8rPJBI9loFDZ+YzPGdeniYK+FTmRD1TMCz7ev2SNIozyKKpnGgsxO34u6Z4z/t0ITuu7voi/AshfsGsgFg==}
     engines: {node: '>=14.0.0'}
@@ -2249,6 +2262,12 @@ packages:
       '@types/three': '>=0.134.0'
       three: '>=0.134.0'
 
+  maath@0.6.0:
+    resolution: {integrity: sha512-dSb2xQuP7vDnaYqfoKzlApeRcR2xtN8/f7WV/TMAkBC8552TwTLtOO0JTcSygkYMjNDPoo6V01jTw/aPi4JrMw==}
+    peerDependencies:
+      '@types/three': '>=0.144.0'
+      three: '>=0.144.0'
+
   make-dir@2.1.0:
     resolution: {integrity: sha512-LS9X+dc8KLxXCb8dni79fLIIUA5VyZoyjSMCwTluaXA0o27cCK0bhXkpgw+sTXVpPy/lSO57ilRixqk0vDmtRA==}
     engines: {node: '>=6'}
@@ -2395,6 +2414,12 @@ packages:
 
   mz@2.7.0:
     resolution: {integrity: sha512-z81GNO7nnYMEhrGh9LeymoE4+Yr0Wn5McHIZMK5cfQCl+NDX08sCZgUc9/6MHni9IWuFLm1Z3HTCXu2z9fN62Q==}
+
+  n8ao@1.9.3:
+    resolution: {integrity: sha512-OZX+u8LaEfxLi6lupuyT8gIv80D6D8FIeKbBNkCyY0nE+1wmm6sQ4yeyW3a15lFMrfTcEhe0AU8QhhDejHg7sg==}
+    peerDependencies:
+      postprocessing: '>=6.30.0'
+      three: '>=0.137'
 
   nanoid@3.3.7:
     resolution: {integrity: sha512-eSRppjcPIatRIMC1U6UngP8XFcz8MQWGQdt1MTBQ7NaAmvXDfvNxbvWV3x2y6CdEUciCSsDHDQZbhYaB8QEo2g==}
@@ -2593,6 +2618,11 @@ packages:
   postcss@8.4.47:
     resolution: {integrity: sha512-56rxCq7G/XfB4EkXq9Egn5GCqugWvDFjafDOThIdMBsI15iqPqR5r15TfSr1YPYeEI19YeaXMCbY6u88Y76GLQ==}
     engines: {node: ^10 || ^12 || >=14}
+
+  postprocessing@6.36.3:
+    resolution: {integrity: sha512-GtMLwoqg0xdYAgm9lbf6qlKay7HQPb8Z+xAPSzbCUspud/qBj3Y/orJSkqEQVlfxTtm7YAUSv+J39ir51/IwaQ==}
+    peerDependencies:
+      three: '>= 0.157.0 < 0.170.0'
 
   potpack@1.0.2:
     resolution: {integrity: sha512-choctRBIV9EMT9WGAZHn3V7t0Z2pMQyl0EZE6pFc/6ml3ssw7Dlf/oAOvFwjm1HVsqfQN8GfeFyJ+d8tRzqueQ==}
@@ -4817,6 +4847,19 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       react-native: 0.76.0(@babel/core@7.25.9)(@babel/preset-env@7.25.9(@babel/core@7.25.9))(@types/react@18.3.12)(react@18.3.1)
 
+  '@react-three/postprocessing@2.16.3(@react-three/fiber@8.17.10(react-dom@18.3.1(react@18.3.1))(react-native@0.76.0(@babel/core@7.25.9)(@babel/preset-env@7.25.9(@babel/core@7.25.9))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)(three@0.169.0))(@types/three@0.163.0)(react@18.3.1)(three@0.169.0)':
+    dependencies:
+      '@react-three/fiber': 8.17.10(react-dom@18.3.1(react@18.3.1))(react-native@0.76.0(@babel/core@7.25.9)(@babel/preset-env@7.25.9(@babel/core@7.25.9))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)(three@0.169.0)
+      buffer: 6.0.3
+      maath: 0.6.0(@types/three@0.163.0)(three@0.169.0)
+      n8ao: 1.9.3(postprocessing@6.36.3(three@0.169.0))(three@0.169.0)
+      postprocessing: 6.36.3(three@0.169.0)
+      react: 18.3.1
+      three: 0.169.0
+      three-stdlib: 2.33.0(three@0.169.0)
+    transitivePeerDependencies:
+      - '@types/three'
+
   '@remix-run/router@1.20.0': {}
 
   '@rollup/rollup-android-arm-eabi@4.24.0':
@@ -6016,6 +6059,11 @@ snapshots:
       '@types/three': 0.163.0
       three: 0.169.0
 
+  maath@0.6.0(@types/three@0.163.0)(three@0.169.0):
+    dependencies:
+      '@types/three': 0.163.0
+      three: 0.169.0
+
   make-dir@2.1.0:
     dependencies:
       pify: 4.0.1
@@ -6301,6 +6349,11 @@ snapshots:
       object-assign: 4.1.1
       thenify-all: 1.6.0
 
+  n8ao@1.9.3(postprocessing@6.36.3(three@0.169.0))(three@0.169.0):
+    dependencies:
+      postprocessing: 6.36.3(three@0.169.0)
+      three: 0.169.0
+
   nanoid@3.3.7: {}
 
   negotiator@0.6.3:
@@ -6476,6 +6529,10 @@ snapshots:
       nanoid: 3.3.7
       picocolors: 1.1.1
       source-map-js: 1.2.1
+
+  postprocessing@6.36.3(three@0.169.0):
+    dependencies:
+      three: 0.169.0
 
   potpack@1.0.2: {}
 
