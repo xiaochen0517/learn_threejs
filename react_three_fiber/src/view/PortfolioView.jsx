@@ -15,7 +15,7 @@ export default function PortfolioView() {
 
   return <>
     <Perf position="top-left" style={{marginTop: "3rem"}}/>
-    <axesHelper args={[5]}/>
+    {/*<axesHelper args={[5]}/>*/}
     <color attach="background" args={["#241a1a"]}/>
 
     <ambientLight intensity={2}/>
