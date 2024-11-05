@@ -10,6 +10,7 @@ import Text3DView from "./view/Text3DView.jsx";
 import MouseEventView from "./view/MouseEventView.jsx";
 import PostProcessingView from "./view/PostProcessingView.jsx";
 import PortfolioView from "./view/PortfolioView.jsx";
+import TransferArrayView from "./view/TransferArrayView.jsx";
 
 function App() {
 
@@ -63,6 +64,11 @@ function App() {
       path: "/portfolio",
       title: "Portfolio",
       element: <PortfolioView/>,
+    },
+    {
+      path: "/transfer-array",
+      title: "Transfer Array",
+      element: <TransferArrayView/>,
     },
   ]);
 
