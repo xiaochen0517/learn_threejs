@@ -9,6 +9,7 @@ import LoadModelView from "./view/LoadModelView.jsx";
 import Text3DView from "./view/Text3DView.jsx";
 import MouseEventView from "./view/MouseEventView.jsx";
 import PostProcessingView from "./view/PostProcessingView.jsx";
+import PortfolioView from "./view/PortfolioView.jsx";
 
 function App() {
 
@@ -58,6 +59,11 @@ function App() {
       title: "Post Processing",
       element: <PostProcessingView/>,
     },
+    {
+      path: "/portfolio",
+      title: "Portfolio",
+      element: <PortfolioView/>,
+    },
   ]);
 
   return (
@@ -76,7 +82,7 @@ function App() {
           }
         </ul>
       </nav>
-      <Canvas shadows={true}>
+      <Canvas className="touch-none" shadows={true}>
         <RouterProvider router={router}/>
       </Canvas>
     </>

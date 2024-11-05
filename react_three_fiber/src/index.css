@@ -6,3 +6,14 @@ html, body {
     margin: 0;
     padding: 0;
 }
+
+canvas {
+    touch-action: none;
+}
+
+.htmlScreen iframe {
+    width: 1024px;
+    height: 670px;
+    border-radius: 10px;
+    background-color: black;
+}
