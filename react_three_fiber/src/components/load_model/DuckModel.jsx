@@ -1,5 +1,6 @@
 import {useLoader} from "@react-three/fiber";
-import {DRACOLoader, GLTFLoader} from "three/addons";
+import {GLTFLoader} from "three/addons/loaders/GLTFLoader.js";
+import {DRACOLoader} from "three/addons/loaders/DRACOLoader.js";
 import {useGLTF} from "@react-three/drei";
 
 export default function DuckModel() {

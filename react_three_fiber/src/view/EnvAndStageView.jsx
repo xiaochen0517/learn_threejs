@@ -4,6 +4,7 @@ import {
   ContactShadows,
   Environment,
   Lightformer,
+  MeshReflectorMaterial,
   OrbitControls,
   RandomizedLight,
   Sky,
@@ -37,6 +38,7 @@ export default function EnvAndStageView() {
     openLightformer,
     openBakeShadows,
     openPlane,
+    openReflector,
     shadowType,
   } = useControls({
     cubePosition: {
@@ -84,6 +86,10 @@ export default function EnvAndStageView() {
     openPlane: {
       value: true,
       label: "Open Plane",
+    },
+    openReflector: {
+      value: true,
+      label: "Open Reflector",
     },
     shadowType: {
       value: "none",
@@ -179,7 +185,7 @@ export default function EnvAndStageView() {
 
     {!openStage && openPlane ? <mesh receiveShadow={true} position-y={0} rotation-x={-Math.PI / 2}>
       <planeGeometry args={[10, 10]}/>
-      <meshStandardMaterial color="skyblue"/>
+      {openReflector ? <MeshReflectorMaterial color="skyblue" roughness={0.8} mirror={0.1} metalness={0.0} resolution={512}/> : <meshStandardMaterial color="skyblue"/>}
     </mesh> : <></>}
   </>;
 }

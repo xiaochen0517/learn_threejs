@@ -19,7 +19,8 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.27.0",
-    "three": "^0.169.0"
+    "realism-effects": "^1.0.18",
+    "three": "0.156.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.3",
