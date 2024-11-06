@@ -40,7 +40,7 @@ export default function Text3DView() {
   });
 
   return <>
-    <Perf position="top-left" style={{marginTop: "3rem"}}/>
+    <Perf position="top-left"/>
 
     {debugData.disableOrbitControls ? <></> : <OrbitControls makeDefault/>}
 

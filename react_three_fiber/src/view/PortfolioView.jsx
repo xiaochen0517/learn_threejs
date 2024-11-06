@@ -14,7 +14,7 @@ export default function PortfolioView() {
   const debugData = useControls({});
 
   return <>
-    <Perf position="top-left" style={{marginTop: "3rem"}}/>
+    <Perf position="top-left"/>
     {/*<axesHelper args={[5]}/>*/}
     <color attach="background" args={["#241a1a"]}/>
 

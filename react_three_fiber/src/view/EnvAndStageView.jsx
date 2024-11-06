@@ -172,7 +172,7 @@ export default function EnvAndStageView() {
   </>;
 
   return <>
-    <Perf position="top-left" style={{marginTop: "3rem"}}/>
+    <Perf position="top-left"/>
 
     <OrbitControls makeDefault/>
 

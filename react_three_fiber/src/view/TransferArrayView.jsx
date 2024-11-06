@@ -15,7 +15,7 @@ export default function TransferArrayView() {
   const debugData = useControls({});
 
   return <>
-    <Perf position="top-left" style={{marginTop: "3rem"}}/>
+    <Perf position="top-left"/>
 
     <OrbitControls makeDefault/>
 

@@ -10,6 +10,7 @@ import MouseEventView from "../view/MouseEventView.jsx";
 import PostProcessingView from "../view/PostProcessingView.jsx";
 import PortfolioView from "../view/PortfolioView.jsx";
 import TransferArrayView from "../view/TransferArrayView.jsx";
+import PhysicsView from "../view/PhysicsView.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -66,6 +67,11 @@ export const router = createBrowserRouter([
     path: "/transfer-array",
     title: "Transfer Array",
     element: <TransferArrayView/>,
+  },
+  {
+    path: "/physics",
+    title: "Physics",
+    element: <PhysicsView/>,
   },
 ], {
   basename: "/",
