@@ -11,6 +11,7 @@ import PostProcessingView from "../view/PostProcessingView.jsx";
 import PortfolioView from "../view/PortfolioView.jsx";
 import TransferArrayView from "../view/TransferArrayView.jsx";
 import PhysicsView from "../view/PhysicsView.jsx";
+import SimpleGameView from "../view/SimpleGameView.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -72,6 +73,11 @@ export const router = createBrowserRouter([
     path: "/physics",
     title: "Physics",
     element: <PhysicsView/>,
+  },
+  {
+    path: "/simple-game",
+    title: "Simple Game",
+    element: <SimpleGameView/>,
   },
 ], {
   basename: "/",
