@@ -10,7 +10,7 @@ export default function SimpleGameView() {
 
   const three = useThree();
 
-  three.camera.position.set(0, 2, 7);
+  three.camera.position.set(0, 8, 2);
   three.camera.lookAt(0, 0, 0);
 
   const defaultSceneItemsDebugData = {

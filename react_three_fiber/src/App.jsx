@@ -1,13 +1,24 @@
 import {RouterProvider} from "react-router-dom";
 import {Canvas} from "@react-three/fiber";
 import {router} from "./router/index.jsx";
+import {KeyboardControls} from "@react-three/drei";
 
 function App() {
 
   return (
-    <Canvas className="touch-none" shadows={true}>
-      <RouterProvider router={router}/>
-    </Canvas>
+    <KeyboardControls
+      map={[
+        {name: "forward", keys: ["KeyW", "ArrowUp"]},
+        {name: "backward", keys: ["KeyS", "ArrowDown"]},
+        {name: "left", keys: ["KeyA", "ArrowLeft"]},
+        {name: "right", keys: ["KeyD", "ArrowRight"]},
+        {name: "jump", keys: ["Space"]},
+      ]}
+    >
+      <Canvas className="touch-none" shadows={true}>
+        <RouterProvider router={router}/>
+      </Canvas>
+    </KeyboardControls>
   );
 }
 
