@@ -15,6 +15,7 @@ const FLOOR_1_MATERIAL = new THREE.MeshStandardMaterial({color: "limegreen"});
 const FLOOR_2_MATERIAL = new THREE.MeshStandardMaterial({color: "greenyellow"});
 const OBSTACLE_MATERIAL = new THREE.MeshStandardMaterial({color: "orangered"});
 const WALL_MATERIAL = new THREE.MeshStandardMaterial({color: "slategray"});
+const TRANSPARENT_MATERIAL = new THREE.MeshBasicMaterial({color: "transparent", opacity: 0.0, transparent: true});
 
 function Floor({position = [0, -FLOOR_HEIGHT * 0.5, 0], material = FLOOR_1_MATERIAL}) {
   return <mesh
@@ -178,7 +179,7 @@ function Bounds({length = 1}) {
       <mesh
         castShadow={true}
         geometry={FLOOR_GEOMETRY}
-        material={WALL_MATERIAL}
+        material={TRANSPARENT_MATERIAL}
         scale={[FLOOR_WIDTH, FLOOR_WIDTH, FLOOR_HEIGHT]}
         position={[0, FLOOR_WIDTH * 0.5, FLOOR_WIDTH * 0.5 + FLOOR_HEIGHT * 0.5]}
       />

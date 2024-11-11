@@ -5,6 +5,8 @@ import {Perf} from "r3f-perf";
 import Lights from "../components/simple_game/Lights.jsx";
 import Level from "../components/simple_game/Level.jsx";
 import {Physics} from "@react-three/rapier";
+import GameGui from "../components/simple_game/GameGui.jsx";
+import PlayerProvider from "../components/simple_game/PlayerContext.jsx";
 
 export default function SimpleGameView() {
 
@@ -25,13 +27,16 @@ export default function SimpleGameView() {
   });
 
   return <>
+
     <Perf position="top-left"/>
 
     {debugData.disableOrbitControls ? <></> : <OrbitControls makeDefault/>}
-
-    <Physics debug={true}>
-      <Lights/>
-      <Level/>
-    </Physics>
+    <PlayerProvider>
+      <GameGui/>
+      <Physics debug={true}>
+        <Lights/>
+        <Level/>
+      </Physics>
+    </PlayerProvider>
   </>;
 }

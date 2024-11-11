@@ -1,20 +1,43 @@
 import {Icosahedron, useKeyboardControls} from "@react-three/drei";
-import {RigidBody} from "@react-three/rapier";
+import {RigidBody, useRapier} from "@react-three/rapier";
 import {useFrame} from "@react-three/fiber";
-import {useEffect, useRef} from "react";
+import {useContext, useEffect, useRef, useState} from "react";
+import * as THREE from "three";
+import {PlayerContext} from "./PlayerContext.jsx";
 
+const PLAYER_RADIUS = 0.3;
 const IMPULSE_SCALE = 0.4;
 const TORQUE_SCALE = 0.1;
 
 export default function Player() {
 
-  const playBodyRef = useRef();
+  /**
+   * Control
+   */
+  const playBodyRef = useContext(PlayerContext);
+  // const playBodyRef = useRef();
   const [subscribeKeys, getKeys] = useKeyboardControls();
+  const {rapier, world} = useRapier();
 
   const doJump = () => {
-    if (playBodyRef.current) {
-      playBodyRef.current.applyImpulse({x: 0, y: 1, z: 0});
+    if (!playBodyRef.current) {
+      return;
     }
+    console.log("doJump");
+    const origin = playBodyRef.current.translation();
+    origin.y -= PLAYER_RADIUS + 0.01;
+    const rayDirection = {x: 0, y: -1, z: 0};
+    const ray = new rapier.Ray(origin, rayDirection);
+    const hit = world.castRay(ray, 10, true);
+    console.log("hit", hit);
+    if (!hit || hit.timeOfImpact > 0.15) {
+      return;
+    }
+
+    if (playBodyRef.current.isSleeping()) {
+      playBodyRef.current.wakeUp();
+    }
+    playBodyRef.current.applyImpulse({x: 0, y: 0.5, z: 0});
   };
   useEffect(() => {
     return subscribeKeys(
@@ -28,7 +51,7 @@ export default function Player() {
   }, []);
 
   const noneZero = (v) => v.x !== 0 || v.y !== 0 || v.z !== 0;
-  const doMove = (delta) => {
+  const movePlayer = (delta) => {
     if (!playBodyRef.current) {
       return;
     }
@@ -60,9 +83,39 @@ export default function Player() {
     playBodyRef.current.applyImpulse(impulse);
     playBodyRef.current.applyTorqueImpulse(torque);
   };
+
+  /**
+   * Camera
+   */
+  const [smoothCameraPosition] = useState(() => new THREE.Vector3());
+  const [smoothCameraTargetPosition] = useState(() => new THREE.Vector3());
+
+  const moveCamera = (state, delta) => {
+    if (!playBodyRef.current) {
+      return;
+    }
+    const playerPosition = playBodyRef.current.translation();
+    const cameraPosition = new THREE.Vector3();
+    cameraPosition.copy(playerPosition);
+    cameraPosition.z += 2.5;
+    cameraPosition.y += 1;
+
+    const cameraTargetPosition = new THREE.Vector3();
+    cameraTargetPosition.copy(playerPosition);
+    cameraTargetPosition.y += 0.5;
+
+    smoothCameraPosition.lerp(cameraPosition, 5 * delta);
+    smoothCameraTargetPosition.lerp(cameraTargetPosition, 5 * delta);
+
+    state.camera.position.copy(smoothCameraPosition);
+    state.camera.lookAt(smoothCameraTargetPosition);
+  };
+
   useFrame((state, delta) => {
-    doMove(delta);
+    movePlayer(delta);
+    moveCamera(state, delta);
   });
+
   return <RigidBody
     ref={playBodyRef}
     colliders="trimesh"
@@ -71,7 +124,7 @@ export default function Player() {
     position={[0, 1, 0]}
     linearDamping={0.5}
   >
-    <Icosahedron castShadow args={[0.3, 1]}>
+    <Icosahedron castShadow args={[PLAYER_RADIUS, 1]}>
       <meshStandardMaterial flatShading={true} color="mediumpurple"/>
     </Icosahedron>
   </RigidBody>;

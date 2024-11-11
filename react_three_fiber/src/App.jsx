@@ -15,7 +15,7 @@ function App() {
         {name: "jump", keys: ["Space"]},
       ]}
     >
-      <Canvas className="touch-none" shadows={true}>
+      <Canvas className="touch-none" shadows={true} gl={{ localClippingEnabled: true }}>
         <RouterProvider router={router}/>
       </Canvas>
     </KeyboardControls>
