@@ -1,7 +1,7 @@
 import {Icosahedron, useKeyboardControls} from "@react-three/drei";
 import {RigidBody, useRapier} from "@react-three/rapier";
 import {useFrame} from "@react-three/fiber";
-import {useContext, useEffect, useRef, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import * as THREE from "three";
 import {PlayerContext} from "./PlayerContext.jsx";
 
@@ -15,7 +15,6 @@ export default function Player() {
    * Control
    */
   const playBodyRef = useContext(PlayerContext);
-  // const playBodyRef = useRef();
   const [subscribeKeys, getKeys] = useKeyboardControls();
   const {rapier, world} = useRapier();
 

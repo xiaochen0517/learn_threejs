@@ -19,7 +19,7 @@ export default function GameGui() {
     guiRootRef.current.rotation.y = -Math.PI * 0.1;
   }, []);
 
-  const updateGuiPosition = (state) => {
+  const updateGuiPosition = () => {
     if (!guiRootRef.current || !playBodyRef.current) {
       return;
     }
