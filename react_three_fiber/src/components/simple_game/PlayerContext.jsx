@@ -1,6 +1,6 @@
 import React, {createContext, useRef} from "react";
 
-export const PlayerContext = createContext();
+export const PlayerContext = createContext(null);
 
 export default function PlayerProvider({children}) {
   const playBodyRef = useRef();

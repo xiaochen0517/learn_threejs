@@ -8,7 +8,6 @@ import {Card} from "../apfel/card.jsx";
 export default function PlayerScoreGui() {
 
   const playBodyRef = useContext(PlayerContext);
-  console.log("PlayerScoreGui", playBodyRef.current);
   const guiRootRef = useRef();
 
   useEffect(() => {

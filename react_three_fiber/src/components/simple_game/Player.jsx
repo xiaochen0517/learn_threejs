@@ -1,6 +1,6 @@
 import {Icosahedron, useKeyboardControls} from "@react-three/drei";
 import {RigidBody, useRapier} from "@react-three/rapier";
-import {useFrame} from "@react-three/fiber";
+import {useFrame, useThree} from "@react-three/fiber";
 import {useContext, useEffect, useState} from "react";
 import * as THREE from "three";
 import {PlayerContext} from "./PlayerContext.jsx";
@@ -22,13 +22,12 @@ export default function Player() {
     if (!playBodyRef.current) {
       return;
     }
-    console.log("doJump");
+    // Check if the player is on the ground
     const origin = playBodyRef.current.translation();
     origin.y -= PLAYER_RADIUS + 0.01;
     const rayDirection = {x: 0, y: -1, z: 0};
     const ray = new rapier.Ray(origin, rayDirection);
     const hit = world.castRay(ray, 10, true);
-    console.log("hit", hit);
     if (!hit || hit.timeOfImpact > 0.15) {
       return;
     }
@@ -86,11 +85,25 @@ export default function Player() {
   /**
    * Camera
    */
+  const three = useThree();
   const [smoothCameraPosition] = useState(() => new THREE.Vector3());
   const [smoothCameraTargetPosition] = useState(() => new THREE.Vector3());
 
+  const [cameraInitialized, setCameraInitialized] = useState(true);
+  useEffect(() => {
+    console.log("init camera");
+    // init camera position
+    three.camera.position.set(0, 10, 10);
+    three.camera.lookAt(0, 10, 0);
+    smoothCameraPosition.copy(three.camera.position.clone());
+    smoothCameraTargetPosition.copy(new THREE.Vector3(0, 10, 0));
+    setTimeout(() => {
+      setCameraInitialized(true);
+    }, 500);
+  }, []);
+
   const moveCamera = (state, delta) => {
-    if (!playBodyRef.current) {
+    if (!playBodyRef.current || !cameraInitialized) {
       return;
     }
     const playerPosition = playBodyRef.current.translation();

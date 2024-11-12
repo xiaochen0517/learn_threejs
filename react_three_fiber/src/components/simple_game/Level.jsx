@@ -196,20 +196,20 @@ function Bounds({length = 1}) {
   </>;
 }
 
-export class LevelProps {
-  EASY = 1;
-  MEDIUM = 2;
-  HARD = 3;
-  VERY_HARD = 4;
-}
+export const Levels = {
+  EASY: 1,
+  MEDIUM: 2,
+  HARD: 3,
+  VERY_HARD: 4,
+};
 
 function getBlockCount(level) {
   switch (level) {
-    case new LevelProps().MEDIUM:
+    case Levels.MEDIUM:
       return 10;
-    case new LevelProps().HARD:
+    case Levels.HARD:
       return 15;
-    case new LevelProps().VERY_HARD:
+    case Levels.VERY_HARD:
       return 20;
     default:
       return 5;

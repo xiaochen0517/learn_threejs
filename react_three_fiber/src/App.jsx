@@ -3,7 +3,7 @@ import {Canvas} from "@react-three/fiber";
 import {router} from "./router/index.jsx";
 import {KeyboardControls} from "@react-three/drei";
 
-function App() {
+export default function App() {
 
   return (
     <KeyboardControls
@@ -21,5 +21,3 @@ function App() {
     </KeyboardControls>
   );
 }
-
-export default App;

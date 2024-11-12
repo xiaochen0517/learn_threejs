@@ -1,9 +1,8 @@
 import {OrbitControls} from "@react-three/drei";
-import {useThree} from "@react-three/fiber";
 import {folder, useControls} from "leva";
 import {Perf} from "r3f-perf";
 import Lights from "../components/simple_game/Lights.jsx";
-import Level from "../components/simple_game/Level.jsx";
+import Level, {Levels} from "../components/simple_game/Level.jsx";
 import {Physics} from "@react-three/rapier";
 import PlayerScoreGui from "../components/simple_game/PlayerScoreGui.jsx";
 import PlayerProvider from "../components/simple_game/PlayerContext.jsx";
@@ -11,14 +10,9 @@ import PlayerControlGui from "../components/simple_game/PlayerControlGui.jsx";
 
 export default function SimpleGameView() {
 
-  const three = useThree();
-
-  three.camera.position.set(0, 8, 2);
-  three.camera.lookAt(0, 0, 0);
-
   const defaultSceneItemsDebugData = {
     disableOrbitControls: {
-      value: false,
+      value: true,
       label: "Disable Orbit Controls",
     },
   };
@@ -37,7 +31,7 @@ export default function SimpleGameView() {
       <PlayerControlGui/>
       <Physics debug={true}>
         <Lights/>
-        <Level/>
+        <Level level={Levels.HARD}/>
       </Physics>
     </PlayerProvider>
   </>;
